@@ -1,0 +1,31 @@
+{% extends './layout.html'%}
+{% block main %}
+
+<p>these are the items in {{categoryname}} category</p>
+
+<form action = '/categoriesdelete/{{catid}}?_method=DELETE' method = 'POST'>
+<button type = 'submit'> Delete this category</button>
+</form> 
+
+
+<ul>
+    {% for item in thecategory %}
+    <li>
+        <p>{{item.name}}</p>
+        <form action = '/category/{{item.id}}?_method=DELETE' method = 'POST'>
+        <button type = 'submit'> Delete this item!</button>
+        </form>
+    </li>
+    {% endfor %}
+
+</ul>
+
+
+
+<form action = '/category/{{catid}}' method = 'POST'>
+<label for = 'name_field'> Add a new item to this catergory: </label>
+<input name = 'name' type = 'text' id = 'name_field'/>
+<input type = 'submit' value = 'now sumbit!'>
+</form>
+
+{% endblock %}
